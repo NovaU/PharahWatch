@@ -3,7 +3,6 @@ var device;
 var user;
 var region;
 var url;
-var achivementsHtml;
 function loadHandler() {
   document.getElementById("btnPC").addEventListener("click", buttonPCClicked);
   document.getElementById("btnPSN").addEventListener("click", buttonPSNClicked);
@@ -142,9 +141,9 @@ function getHtml(){
   xhr.send();
 }
 function getStats(htmlText) {
-  var startA = htmlText.indexOf('<div class="row column gutter-12 gutter-18@md">');
-  var endA = htmlText.indexOf('</section>');
-  achivementsHtml = htmlText.substr(startA, endA - startA);
+  var startA = htmlText.indexOf('<td>Games Played</td><td>') + '<td>Games Played</td><td>'.length;
+  var endA = htmlText.indexOf('</td>', startA);
+  var gamesHtml = htmlText.substr(startA, endA - startA);
   var start = htmlText.indexOf('<div class="masthead-player">');
   var end = htmlText.indexOf('<p class="masthead-detail h4">');
   htmlText = htmlText.substr(start, end - start);
@@ -152,7 +151,7 @@ function getStats(htmlText) {
   var div1 = document.createElement( 'div1' );
   div1.innerHTML = htmlText;
   var div2 = document.createElement( 'div2' );
-  div2.innerHTML = htmlText;
+  div2.innerHTML = gamesHtml;
   var profileScreen = document.getElementById("profileScreen");
   profileScreen.appendChild(div1);
   profileScreen.appendChild(div2);

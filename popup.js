@@ -151,7 +151,7 @@ function getStats(htmlText) {
   var div1 = document.createElement( 'div1' );
   div1.innerHTML = htmlText;
   var div2 = document.createElement( 'div2' );
-  div2.innerHTML = gamesHtml;
+  div2.innerHTML = '<p>Comp Games Played: ' + gamesHtml + '</p>';
   var profileScreen = document.getElementById("profileScreen");
   profileScreen.appendChild(div1);
   profileScreen.appendChild(div2);
